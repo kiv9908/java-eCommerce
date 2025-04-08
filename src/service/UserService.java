@@ -1,0 +1,79 @@
+package service;
+
+import domain.model.User;
+import domain.repository.UserRepository;
+import exception.*;
+
+import java.util.Date;
+
+public class UserService {
+
+    private UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public void register(User user) throws InvalidEmailException, InvalidPasswordException, DuplicateEmailException, UserWithdrawnException {
+
+        if (!isValidPassword(user.getPassword())) {
+            throw new InvalidPasswordException("비밀번호는 대/소문자 포함, 숫자 포함, 5~15자여야 합니다");
+        }
+        
+        // 이메일로 사용자 조회
+        User existingUser = userRepository.findByUserId(user.getUserId());
+        if (existingUser != null) {
+            // 이미 등록된 사용자인 경우
+            if ("ST02".equals(existingUser.getUserType())) {
+                throw new UserWithdrawnException("탈퇴한 회원입니다: " + user.getUserId());
+            } else {
+                throw new DuplicateEmailException("이미 등록된 이메일입니다: " + user.getUserId());
+            }
+        }
+
+        user.setStatus("ST01");
+        user.setRegisterBy(user.getUserId());
+        user.setFirstLoginDate(new Date());
+        userRepository.save(user);
+    }
+
+
+    public void updateUser(User user) {
+        userRepository.update(user);
+    }
+
+    public void changePassword(String userId, String oldPassword, String newPassword)
+            throws UserNotFoundException, InvalidPasswordException, AuthenticationException {
+        // 사용자 존재 여부 확인
+        User user = userRepository.findByUserId(userId);
+        if (user == null) {
+            throw new UserNotFoundException("사용자를 찾을 수 없습니다: " + userId);
+        }
+
+        // 기존 비밀번호 확인
+        if (!oldPassword.equals(user.getPassword())) {
+            throw new AuthenticationException("현재 비밀번호가 일치하지 않습니다.");
+        }
+
+        // 새 비밀번호 형식 검증
+        if (!isValidPassword(newPassword)) {
+            throw new InvalidPasswordException("비밀번호는 대문자, 소문자, 숫자를 모두 포함하여 5~15자여야 합니다.");
+        }
+
+        userRepository.update(user);
+    }
+
+    public void requestWithdrawal(String userId) {
+        userRepository.deleteUser(userId);
+    }
+
+
+    private boolean isValidPassword(String password) {
+        // 대/소문자 포함, 숫자 포함, 5~15자 검증
+        return password != null &&
+                password.length() >= 5 && password.length() <= 15 &&
+                password.matches(".*[A-Z].*") && // 대문자 포함
+                password.matches(".*[a-z].*") && // 소문자 포함
+                password.matches(".*[0-9].*");   // 숫자 포함
+    }
+}
