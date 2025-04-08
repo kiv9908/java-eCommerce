@@ -27,7 +27,7 @@ java_final_eCommerce/
 │   │   └── repository/   # 데이터 액세스 계층
 │   ├── exception/        # 커스텀 예외 클래스
 │   ├── lib/              # 외부 라이브러리
-│   ├── resources/        # 설정 파일 (DB 연결 등)
+│   ├── properties/        # 설정 파일 (DB 연결 등)
 │   ├── service/          # 비즈니스 로직
 │   ├── test/             # 테스트 코드
 │   ├── util/             # 유틸리티 함수
@@ -49,7 +49,7 @@ cd java_final_eCommerce
 
 ### 2. 데이터베이스 설정
 
-`src/resources/db.properties` 파일에서 데이터베이스 접속 정보를 설정합니다.
+`src/properties/db.properties` 파일에서 데이터베이스 접속 정보를 설정합니다.
 
 ### 3. 실행 방법
 
