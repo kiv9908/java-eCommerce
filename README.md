@@ -134,6 +134,21 @@ src\lib에 있는 라이브러리를 추가하고 `src\view\Main.java`를 Run
 12. 로그아웃
 선택:
 ```
+## 🎬 주요 기능 데모
+> 참고: 기능별 세부 사용설명서는 하단에서 확인 가능합니다.
+
+| **계정 관리** |
+|:------------:|
+| ![ecommerce_account](https://github.com/user-attachments/assets/8ffb93e6-9d8c-4a76-9f31-63b2c533ff71)|
+
+| **관리자 기능** |
+|:------------:|
+| ![ecommerce_admin](https://github.com/user-attachments/assets/38f3776b-da71-4b8c-9218-d3d7f335154b)|
+
+| **일반 사용자** |
+|:------------:|
+| ![ecommerce_user](https://github.com/user-attachments/assets/cae2f158-2cc4-4922-b052-acac8c94d218) |
+
 
 ## 📝 상세 사용 설명서
 
