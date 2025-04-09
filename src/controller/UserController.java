@@ -6,6 +6,9 @@ import service.AuthService;
 import view.ConsoleService;
 import service.UserService;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class UserController {
     private final UserService userService;
     private final AuthService authService;
