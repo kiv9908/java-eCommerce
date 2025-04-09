@@ -143,7 +143,7 @@ src\lib에 있는 라이브러리를 추가하고 `src\view\Main.java`를 Run
 
 | **관리자 기능** |
 |:------------:|
-| ![ecommerce_admin](https://github.com/user-attachments/assets/38f3776b-da71-4b8c-9218-d3d7f335154b)|
+|![ecommerce_admin](https://github.com/user-attachments/assets/cc466198-e1b3-4905-b941-28c4f8c470a4) |
 
 | **일반 사용자** |
 |:------------:|
