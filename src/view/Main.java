@@ -156,6 +156,8 @@ public class Main {
                 "상품 판매 상태 관리",
                 "재고 관리",
                 "품절 처리",
+                "회원 목록 조회",
+                "회원 권한 변경",
                 "내 정보 수정",
                 "비밀번호 변경",
                 "회원 탈퇴 요청",
@@ -209,23 +211,33 @@ public class Main {
                 productController.markProductOutOfStock();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
+                
+            case 10: // 회원 목록 조회
+                userController.listAllUsers();
+                consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
+                return false;
+                
+            case 11: // 회원 권한 변경
+                userController.changeUserRole();
+                consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
+                return false;
 
-            case 10: // 내 정보 수정
+            case 12: // 내 정보 수정
                 userController.updateUserInfo();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 11: // 비밀번호 변경
+            case 13: // 비밀번호 변경
                 userController.changePassword();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 12: // 회원 탈퇴 요청
+            case 14: // 회원 탈퇴 요청
                 userController.requestWithdrawal();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 13: // 로그아웃
+            case 15: // 로그아웃
                 userController.logout();
                 return false;
 

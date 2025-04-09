@@ -76,4 +76,34 @@ public class UserService {
                 password.matches(".*[a-z].*") && // 소문자 포함
                 password.matches(".*[0-9].*");   // 숫자 포함
     }
+    
+    // 모든 사용자 조회
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+    
+    // 이메일로 사용자 조회
+    public User getUserByEmail(String email) {
+        return userRepository.findByUserId(email);
+    }
+    
+    // 사용자 권한 변경 (일반 사용자 -> 관리자, 관리자 -> 일반 사용자)
+    public boolean changeUserRole(String email, String newUserType) {
+        // 사용자 조회
+        User user = userRepository.findByUserId(email);
+        if (user == null) {
+            return false;
+        }
+        
+        // 사용자 유형 변경
+        user.setUserType(newUserType);
+        
+        try {
+            userRepository.updateUserRole(user);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

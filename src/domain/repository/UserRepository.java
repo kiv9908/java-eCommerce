@@ -14,6 +14,7 @@ public interface UserRepository {
     List<User> findAll();
 
     boolean deleteUser(String userId);
-    // 추가 메서드가 필요하다면 여기에 선언
-
+    
+    // 사용자 권한 변경
+    void updateUserRole(User user);
 }

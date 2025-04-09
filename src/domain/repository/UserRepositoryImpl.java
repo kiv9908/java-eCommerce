@@ -167,4 +167,22 @@ public class UserRepositoryImpl implements UserRepository {
 
         return success;
     }
+    
+    @Override
+    public void updateUserRole(User user) {
+        PreparedStatement pstmt = null;
+
+        try {
+            String sql = "UPDATE TB_USER SET cd_user_type = ? WHERE nm_email = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, user.getUserType());
+            pstmt.setString(2, user.getEmail());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources(null, pstmt);
+        }
+    }
 }
