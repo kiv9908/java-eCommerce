@@ -53,7 +53,7 @@ cd java_final_eCommerce
 
 ### 3. 실행 방법
 
-#### ✅ 명령행에서 실행
+#### ✅ Window PowerShell 관리자모드에서 실행 
 
 ```bash
 # 인코딩 설정
