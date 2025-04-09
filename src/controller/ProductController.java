@@ -484,4 +484,63 @@ public class ProductController {
             consoleService.printError("품절 처리 중 오류가 발생했습니다: " + e.getMessage());
         }
     }
+    
+    // 관리자 & 일반 사용자: 상품명으로 검색
+    public void searchProductsByName() {
+        consoleService.printMessage("\n===== 상품명 검색 =====");
+        
+        try {
+            // 검색할 상품명 입력 받기
+            String searchKeyword = consoleService.readLine("검색할 상품명: ");
+            
+            if (searchKeyword.trim().isEmpty()) {
+                consoleService.printError("검색어를 입력해주세요.");
+                return;
+            }
+            
+            // 상품명으로 검색
+            List<Product> products = productService.searchProductsByName(searchKeyword);
+            
+            if (products.isEmpty()) {
+                consoleService.printMessage("검색 결과가 없습니다.");
+                return;
+            }
+            
+            // 검색 결과 출력
+            String headerFormat = "%-12s %-43s %-15s %-10s %-10s";
+            String dataFormat = "%-12s %-43s %-15s %-10d %-10s";
+            consoleService.printMessage(String.format(headerFormat, 
+                "상품코드", "상품명", "가격", "재고", "상태"));
+            
+            // 구분선 출력
+            consoleService.printMessage("-------------------------------------------------------------------------------------");
+            
+            for (Product product : products) {
+                // 상품명 처리 (길이가 40자 이상인 경우 자르고 ... 추가)
+                String productName = product.getProductName();
+                if (productName.length() > 40) {
+                    productName = productName.substring(0, 37) + "...";
+                }
+                
+                // 가격 표시 형식 지정 (천 단위 콤마)
+                String formattedPrice = String.format("%,d", product.getSalePrice());
+                
+                // 상품 상태 가져오기
+                String status = product.getProductStatus();
+                
+                consoleService.printMessage(String.format(dataFormat,
+                    product.getProductCode(), 
+                    productName, 
+                    formattedPrice, 
+                    product.getStock(),
+                    status));
+            }
+            
+            // 검색 결과 수 표시
+            consoleService.printMessage("\n총 " + products.size() + "개의 상품이 검색되었습니다.");
+            
+        } catch (Exception e) {
+            consoleService.printError("상품 검색 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
 }

@@ -107,5 +107,14 @@ public class ProductService {
         // 판매 기간을 어제까지로 설정 (판매 종료)
         return productRepository.updateSaleStatus(productCode, "20000101", yesterday);
     }
+    
+    // 상품명으로 상품 검색
+    public List<Product> searchProductsByName(String productName) {
+        if (productName == null || productName.trim().isEmpty()) {
+            throw new IllegalArgumentException("검색어를 입력해주세요.");
+        }
+        
+        return productRepository.findByProductName(productName);
+    }
 
 }

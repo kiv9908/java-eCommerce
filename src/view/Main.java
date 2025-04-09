@@ -92,7 +92,8 @@ public class Main {
     private static boolean showUserMenu(ConsoleService consoleService, UserController userController, ProductController productController) {
         List<String> options = Arrays.asList(
                 "상품 목록 보기",
-                "상품 상세 보기",
+                "상품명으로 검색",
+                "상품 상세 보기", 
                 "내 정보 수정",
                 "비밀번호 변경",
                 "회원 탈퇴 요청",
@@ -106,28 +107,33 @@ public class Main {
                 productController.listProducts();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
+                
+            case 2: // 상품명으로 검색
+                productController.searchProductsByName();
+                consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
+                return false;
 
-            case 2: // 상품 상세 보기
+            case 3: // 상품 상세 보기
                 productController.viewProductDetail();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 3: // 내 정보 수정
+            case 4: // 내 정보 수정
                 userController.updateUserInfo();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 4: // 비밀번호 변경
+            case 5: // 비밀번호 변경
                 userController.changePassword();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 5: // 회원 탈퇴 요청
+            case 6: // 회원 탈퇴 요청
                 userController.requestWithdrawal();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 6: // 로그아웃
+            case 7: // 로그아웃
                 userController.logout();
                 return false;
 
@@ -145,6 +151,7 @@ public class Main {
                 "상품 수정",
                 "상품 삭제",
                 "상품 목록 보기",
+                "상품명으로 검색",
                 "상품 상세 보기",
                 "상품 판매 상태 관리",
                 "재고 관리",
@@ -177,43 +184,48 @@ public class Main {
                 productController.listProducts();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
+                
+            case 5: // 상품명으로 검색
+                productController.searchProductsByName();
+                consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
+                return false;
 
-            case 5: // 상품 상세 보기
+            case 6: // 상품 상세 보기
                 productController.viewProductDetail();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 6: // 상품 판매 상태 관리
+            case 7: // 상품 판매 상태 관리
                 productController.manageSaleStatus();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 7: // 재고 관리
+            case 8: // 재고 관리
                 productController.manageStock();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 8: // 품절 처리
+            case 9: // 품절 처리
                 productController.markProductOutOfStock();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 9: // 내 정보 수정
+            case 10: // 내 정보 수정
                 userController.updateUserInfo();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 10: // 비밀번호 변경
+            case 11: // 비밀번호 변경
                 userController.changePassword();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 11: // 회원 탈퇴 요청
+            case 12: // 회원 탈퇴 요청
                 userController.requestWithdrawal();
                 consoleService.waitForEnter("계속하려면 Enter 키를 누르세요");
                 return false;
 
-            case 12: // 로그아웃
+            case 13: // 로그아웃
                 userController.logout();
                 return false;
 
